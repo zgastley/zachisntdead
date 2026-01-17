@@ -1,79 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zach Isn't Dead</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px 0;
-      text-align: center;
-    }
-    nav {
-      background-color: #444;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    section {
-      padding: 20px;
-      background-color: #fff;
-      margin: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #333;
-      color: #fff;
-      margin-top: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <header>
-    <h1>Welcome to ZachIsntDead.com</h1>
-    <p>Your creative platform for art, music, and projects.</p>
-  </header>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>This site is a placeholder while we build something amazing! Check back soon for more information about Zach's creative work.</p>
-    </section>
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>Coming soon: details on recent art pieces, music projects, and DIY builds.</p>
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Questions or collaboration ideas? Reach out at <a href="mailto:info@zachisntdead.com">info@zachisntdead.com</a>.</p>
-    </section>
-  </main>
-  <footer>
-    &copy; 2026 ZachIsntDead.com. All rights reserved.
-  </footer>
+  <div class="page">
+    <div class="nav">
+      <div class="logo">Zach Isn't Dead</div>
+      <nav class="nav-links">
+        <a class="active" href="index.html">Blog</a>
+        <a href="music.html">Music</a>
+        <a href="art.html">Art</a>
+        <a href="projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <header>
+
+      <section class="hero">
+        <img class="hero-image" src="assets/zach-heads.png" alt="Layered head silhouettes in white on black." />
+      </section>
+    </header>
+
+    <main>
+      <section id="blog" class="section no-rule">
+        <h1 class="page-title">Journal</h1>
+        <p class="page-intro">Short notes on new releases, works-in-progress, and what is keeping me curious.</p>
+        <div class="post-list">
+          <article class="post-item">
+            <div class="post-meta">Mar 12, 2026 · Studio</div>
+            <h3>Static Gardens: first mix notes</h3>
+            <p>Gritty drums, airy synths, and a new vocal chain that finally feels right.</p>
+            <a class="post-link" href="posts/static-gardens.html">Read entry</a>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">Feb 27, 2026 · Process</div>
+            <h3>Building a tiny collage zine</h3>
+            <p>Cutting, scanning, and re-layering until it starts to feel like a memory.</p>
+            <a class="post-link" href="posts/collage-zine.html">Read entry</a>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">Feb 02, 2026 · Field</div>
+            <h3>Field recordings from the city</h3>
+            <p>Morning trains, late-night chatter, and the hum that stitches it together.</p>
+            <a class="post-link" href="posts/city-field-recordings.html">Read entry</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Want to collaborate, book a show, or trade ideas?</p>
+        <div class="contact">
+          <span>Email: <a href="mailto:info@zachisntdead.com">info@zachisntdead.com</a></span>
+          <span>Instagram: <a href="https://instagram.com" target="_blank" rel="noreferrer">@zachisntdead</a></span>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2026 ZachIsntDead.com. Built with curiosity.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const hero = document.querySelector(".hero-image");
+      if (!hero) {
+        return;
+      }
+
+      const minHeight = 200;
+      const maxHeight = 520;
+      const shrinkRate = 0.6;
+
+      const baseHeight = () => Math.min(maxHeight, Math.max(220, window.innerHeight * 0.45));
+      const update = () => {
+        const start = baseHeight();
+        const next = Math.max(minHeight, start - window.scrollY * shrinkRate);
+        root.style.setProperty("--hero-height", `${next}px`);
+      };
+
+      update();
+      window.addEventListener("scroll", update, {passive: true});
+      window.addEventListener("resize", update);
+    })();
+  </script>
 </body>
+
 </html>

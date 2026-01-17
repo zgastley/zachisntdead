@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Post Title · Zach Isn't Dead</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="page">
+      <div class="nav">
+        <div class="logo">Zach Isn't Dead</div>
+        <nav class="nav-links">
+          <a class="active" href="../index.html">Blog</a>
+          <a href="../music.html">Music</a>
+          <a href="../art.html">Art</a>
+          <a href="../projects.html">Projects</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+      </div>
+
+    <header>
+
+      <section class="hero">
+        <img class="hero-image" src="../assets/zach-heads.png" alt="Layered head silhouettes in white on black." />
+      </section>
+    </header>
+
+    <main>
+      <section class="article-header">
+        <h1 class="title">Post Title</h1>
+        <div class="meta">YYYY-MM-DD · Category</div>
+      </section>
+
+      <section class="article">
+        <p>Intro paragraph here.</p>
+        <p>More details, process notes, or links.</p>
+        <p>Closing thought or next steps.</p>
+        <a class="back-link" href="../index.html">← Back to Journal</a>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2026 ZachIsntDead.com. Built with curiosity.
+    </footer>
+  </div>
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const hero = document.querySelector(".hero-image");
+      if (!hero) {
+        return;
+      }
+
+      const minHeight = 200;
+      const maxHeight = 520;
+      const shrinkRate = 0.6;
+
+      const baseHeight = () => Math.min(maxHeight, Math.max(220, window.innerHeight * 0.45));
+      const update = () => {
+        const start = baseHeight();
+        const next = Math.max(minHeight, start - window.scrollY * shrinkRate);
+        root.style.setProperty("--hero-height", `${next}px`);
+      };
+
+      update();
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+    })();
+  </script>
+</body>
+</html>
