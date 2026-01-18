@@ -8,17 +8,35 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body id="top" class="home">
   <div class="page">
     <div class="nav">
       <!-- <div class="logo"><img class="logo-icon" src="assets/head_cycle.gif" alt="Zach Isn't Dead icon" /></div> -->
       <nav class="nav-links">
-        <a class="active" href="index.html">Home</a>
-        <a href="music.html">Music</a>
-        <a href="art.html">Art</a>
-        <a href="projects.html">Projects</a>
+        <a href="#music">Music</a>
+        <a href="#art">Art</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
         <a href="#contact">Contact</a>
       </nav>
+    </div>
+    <div class="life-bar" role="status" aria-live="polite">
+      <div class="life-bar-inner">
+        <button class="life-bar-chip" type="button" aria-haspopup="dialog" aria-controls="life-modal">
+          <span class="life-heart" aria-hidden="true"></span>
+          <span class="life-pill">...probing...</span>
+        </button>
+      </div>
+    </div>
+    <div id="life-modal" class="life-modal" role="dialog" aria-modal="true" aria-labelledby="life-modal-title" hidden>
+      <div class="life-modal-card">
+        <button class="life-modal-close" type="button" aria-label="Close status details">×</button>
+        <h2 id="life-modal-title">Is he alive?</h2>
+        <p>
+          This reads my current heart rate from my tracker. If it's got a reading, I'm probably alive. If it doesn't
+          have a reading... I'm also probably alive but something broke. ¯\_(ツ)_/¯
+        </p>
+      </div>
     </div>
 
     <header>
@@ -29,9 +47,64 @@
     </header>
 
     <main>
-      <section id="home" class="section no-rule">
-        <h1 class="page-title">Journal</h1>
-        <p class="page-intro">Short notes on new releases, works-in-progress, and what is keeping me curious.</p>
+      <section id="music" class="section no-rule">
+        <h1 class="page-title">Music</h1>
+        <p class="page-intro">Songs, demos, and studio fragments. This is the snapshot of what I am shaping now.</p>
+        <div class="post-list">
+          <article class="post-item">
+            <div class="post-meta">Now playing</div>
+            <h3>Static Gardens</h3>
+            <p>Glitched drums, airy pads, and a restless melody line.</p>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">In progress</div>
+            <h3>Slow light</h3>
+            <p>A loop built from field recordings and filtered guitar.</p>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">Studio notes</div>
+            <h3>Live set rebuild</h3>
+            <p>Reworking the show around loop pedals and live drums.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="art" class="section">
+        <h2>Art</h2>
+        <p>Sketches, scans, and texture studies. A living archive of visual experiments.</p>
+        <div class="post-list">
+          <article class="post-item">
+            <div class="post-meta">Series</div>
+            <h3>Collage memory</h3>
+            <p>Layered paper, torn edges, and soft noise.</p>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">Series</div>
+            <h3>Ink maps</h3>
+            <p>Minimal line work that turns into imagined landscapes.</p>
+          </article>
+          <article class="post-item">
+            <div class="post-meta">Workbench</div>
+            <h3>Material tests</h3>
+            <p>Recycled stock, rough textures, and ink bleed.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <h2>Projects</h2>
+        <p>Builds, experiments, and the ideas I am prototyping right now.</p>
+        <ul class="now">
+          <li>Designing a live set around tape loops and live vocals.</li>
+          <li>Documenting the process for an art + sound installation.</li>
+          <li>Collecting references for a short film soundtrack.</li>
+          <li>Sketching a mini zine to pair with the next EP release.</li>
+        </ul>
+      </section>
+
+      <section id="blog" class="section">
+        <h2>Journal</h2>
+        <p>Short notes on new releases, works-in-progress, and what is keeping me curious.</p>
         <div class="post-list">
           <article class="post-item">
             <div class="post-meta">Mar 12, 2026 · Studio</div>
@@ -68,6 +141,114 @@
       &copy; 2026 ZachIsntDead.com. Built with curiosity.
     </footer>
   </div>
+  <script>
+    (function () {
+      const root = document.body;
+      const statusEl = document.querySelector(".life-pill");
+      const feedUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf9LEUBGvKLUj21scsKLQtDQ-ucL0RccRz-eNfB76MNM2U_hz-RuJe3reKNU22XtR-8xX8HpC63ol3/pub?gid=663029337&single=true&output=csv";
+      const modal = document.getElementById("life-modal");
+      const trigger = document.querySelector(".life-bar-chip");
+      const closeBtn = document.querySelector(".life-modal-close");
+
+      const openModal = () => {
+        if (!modal) {
+          return;
+        }
+        modal.removeAttribute("hidden");
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeModal = () => {
+        if (!modal) {
+          return;
+        }
+        modal.setAttribute("hidden", "");
+        document.body.style.overflow = "";
+      };
+
+      const update = () => {
+        if (window.scrollY > 10) {
+          root.classList.add("scrolled");
+        } else {
+          root.classList.remove("scrolled");
+        }
+      };
+
+      const parseBpm = (csvText) => {
+        const lines = csvText.trim().split("\n").filter(Boolean);
+        if (!lines.length) {
+          return null;
+        }
+        const firstRow = lines[0].split(",").map((cell) => cell.replace(/\"/g, "").trim());
+        const bpm = Number(firstRow[1] || firstRow[0]);
+        return Number.isFinite(bpm) ? bpm : null;
+      };
+
+      const statusForBpm = (bpm) => {
+        if (bpm < 40) {
+          return `Someone should check on our boy - ${bpm} bpm`
+        }
+        if (bpm < 50) {
+          return `He's Probably fine? - ${bpm} bpm`
+        }
+        if (bpm < 60) {
+          return `Alive - Probably Asleep - ${bpm} bpm`
+        }
+        if (bpm < 75) {
+          return `Alive - Seems to be relaxed - ${bpm} bpm`;
+        }
+        if (bpm >= 90) {
+          return `Alive - Probably Checking on the chickens - ${bpm} bpm`;
+        }
+        return `Alive - Cruising | ${bpm} bpm`;
+      };
+
+      const refreshStatus = async () => {
+        if (!statusEl) {
+          return;
+        }
+        try {
+          const response = await fetch(feedUrl, {cache: "no-store"});
+          if (!response.ok) {
+            return;
+          }
+          const csvText = await response.text();
+          const bpm = parseBpm(csvText);
+          if (bpm) {
+            statusEl.textContent = statusForBpm(bpm);
+          }
+        } catch (error) {
+          // Keep fallback text when the feed is unavailable.
+        }
+      };
+
+      update();
+      refreshStatus();
+      window.addEventListener("scroll", update, {passive: true});
+      if (trigger) {
+        trigger.addEventListener("click", openModal);
+      }
+      if (closeBtn) {
+        closeBtn.addEventListener("click", (event) => {
+          event.stopPropagation();
+          closeModal();
+        });
+      }
+      if (modal) {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
+            closeModal();
+          }
+        });
+      }
+      setInterval(refreshStatus, 30000);
+    })();
+  </script>
 </body>
 
 </html>
