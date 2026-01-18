@@ -13,6 +13,12 @@
       toggle.setAttribute("aria-pressed", mode === "dark" ? "true" : "false");
       toggle.textContent = mode === "dark" ? "Light" : "Dark";
     }
+    document.querySelectorAll("[data-src-light][data-src-dark]").forEach((embed) => {
+      const next = mode === "dark" ? embed.dataset.srcDark : embed.dataset.srcLight;
+      if (next && embed.getAttribute("src") !== next) {
+        embed.setAttribute("src", next);
+      }
+    });
   };
 
   const stored = localStorage.getItem("theme");
