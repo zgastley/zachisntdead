@@ -6,25 +6,43 @@
   <title>Static Gardens: first mix notes · Zach Isn't Dead</title>
   <link rel="stylesheet" href="../styles.css">
   <script src="../theme.js" defer></script>
+  <script src="../status.js" defer></script>
 </head>
 <body>
   <div class="page">
-      <div class="nav">
-        <div class="logo"><img class="logo-icon" src="../assets/head_cycle.gif" alt="Zach Isn't Dead icon" /></div>
-        <nav class="nav-links">
-          <a class="nav-home" href="../index.html#top"><img src="../assets/nav_home_text.png" alt="Home" /></a>
-          <a href="../index.html#music">Music</a>
-          <a href="../index.html#art">Art</a>
-          <a href="../index.html#projects">Projects</a>
-          <a href="../index.html#blog">Blog</a>
-          <a href="../index.html#contact">Contact</a>
-        </nav>
+    <div class="nav">
+      <nav class="nav-links">
+        <a href="../index.html#music">Music</a>
+        <a href="../index.html#art">Art</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
+      </nav>
+    </div>
+    <div class="life-bar" role="status" aria-live="polite">
+      <div class="life-bar-inner">
+        <button class="life-bar-chip" type="button" aria-haspopup="dialog" aria-controls="life-modal">
+          <span class="life-heart" aria-hidden="true"></span>
+          <span class="life-pill">...probing...</span>
+        </button>
       </div>
+    </div>
+    <div id="life-modal" class="life-modal" role="dialog" aria-modal="true" aria-labelledby="life-modal-title" hidden>
+      <div class="life-modal-card">
+        <button class="life-modal-close" type="button" aria-label="Close status details">×</button>
+        <h2 id="life-modal-title">Is he alive?</h2>
+        <p>
+          This reads my current heart rate from my tracker. If it's got a reading, I'm probably alive. If it doesn't
+          have a reading... I'm also probably alive but something broke. ¯\_(ツ)_/¯
+        </p>
+      </div>
+    </div>
 
     <header>
 
       <section class="hero">
-        <div class="post-hero">Add post image here</div>
+        <img class="hero-image" src="../assets/zach-heads.png" alt="Layered head silhouettes in white on black." />
       </section>
     </header>
 

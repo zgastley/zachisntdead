@@ -7,6 +7,7 @@
   <title>Zach Isn't Dead</title>
   <link rel="stylesheet" href="styles.css">
   <script src="theme.js" defer></script>
+  <script src="status.js" defer></script>
 </head>
 
 <body id="top" class="home">
@@ -45,6 +46,7 @@
 
       <section class="hero">
         <img class="hero-image" src="assets/zach-heads.png" alt="Layered head silhouettes in white on black." />
+        <div class="hero-wordmark">Not yet.</div>
       </section>
     </header>
 
@@ -143,114 +145,6 @@
       &copy; 2026 ZachIsntDead.com. Built with curiosity.
     </footer>
   </div>
-  <script>
-    (function () {
-      const root = document.body;
-      const statusEl = document.querySelector(".life-pill");
-      const feedUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf9LEUBGvKLUj21scsKLQtDQ-ucL0RccRz-eNfB76MNM2U_hz-RuJe3reKNU22XtR-8xX8HpC63ol3/pub?gid=663029337&single=true&output=csv";
-      const modal = document.getElementById("life-modal");
-      const trigger = document.querySelector(".life-bar-chip");
-      const closeBtn = document.querySelector(".life-modal-close");
-
-      const openModal = () => {
-        if (!modal) {
-          return;
-        }
-        modal.removeAttribute("hidden");
-        document.body.style.overflow = "hidden";
-      };
-
-      const closeModal = () => {
-        if (!modal) {
-          return;
-        }
-        modal.setAttribute("hidden", "");
-        document.body.style.overflow = "";
-      };
-
-      const update = () => {
-        if (window.scrollY > 10) {
-          root.classList.add("scrolled");
-        } else {
-          root.classList.remove("scrolled");
-        }
-      };
-
-      const parseBpm = (csvText) => {
-        const lines = csvText.trim().split("\n").filter(Boolean);
-        if (!lines.length) {
-          return null;
-        }
-        const firstRow = lines[0].split(",").map((cell) => cell.replace(/\"/g, "").trim());
-        const bpm = Number(firstRow[1] || firstRow[0]);
-        return Number.isFinite(bpm) ? bpm : null;
-      };
-
-      const statusForBpm = (bpm) => {
-        if (bpm < 40) {
-          return `Someone should check on our boy - ${bpm} bpm`
-        }
-        if (bpm < 50) {
-          return `He's Probably fine? - ${bpm} bpm`
-        }
-        if (bpm < 60) {
-          return `Alive - Probably Asleep - ${bpm} bpm`
-        }
-        if (bpm < 75) {
-          return `Alive - Seems to be relaxed - ${bpm} bpm`;
-        }
-        if (bpm >= 90) {
-          return `Alive - Probably Checking on the chickens - ${bpm} bpm`;
-        }
-        return `Alive - Cruising | ${bpm} bpm`;
-      };
-
-      const refreshStatus = async () => {
-        if (!statusEl) {
-          return;
-        }
-        try {
-          const response = await fetch(feedUrl, {cache: "no-store"});
-          if (!response.ok) {
-            return;
-          }
-          const csvText = await response.text();
-          const bpm = parseBpm(csvText);
-          if (bpm) {
-            statusEl.textContent = statusForBpm(bpm);
-          }
-        } catch (error) {
-          // Keep fallback text when the feed is unavailable.
-        }
-      };
-
-      update();
-      refreshStatus();
-      window.addEventListener("scroll", update, {passive: true});
-      if (trigger) {
-        trigger.addEventListener("click", openModal);
-      }
-      if (closeBtn) {
-        closeBtn.addEventListener("click", (event) => {
-          event.stopPropagation();
-          closeModal();
-        });
-      }
-      if (modal) {
-        modal.addEventListener("click", (event) => {
-          if (event.target === modal) {
-            closeModal();
-          }
-        });
-        document.addEventListener("keydown", (event) => {
-          if (event.key === "Escape" && !modal.hasAttribute("hidden")) {
-            closeModal();
-          }
-        });
-      }
-      setInterval(refreshStatus, 30000);
-    })();
-  </script>
 </body>
 
 </html>

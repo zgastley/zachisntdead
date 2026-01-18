@@ -26,8 +26,8 @@
       --ink: #f5ead9;
       --muted: #c7b9a7;
       --accent: #95d9c3;
-      --accent-dark: #95d9c3;
-      --accent-soft: #449dd1;
+      --accent-dark: #449dd1;
+      --accent-soft: #DBB3B1;
       --card: #14171a;
       --outline: rgba(255, 255, 255, 0.12);
       --shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
@@ -205,7 +205,7 @@
     .life-modal {
       position: fixed;
       inset: 0;
-      background: rgba(24, 2, 12, 0.4);
+      background: rgba(10, 10, 12, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -218,7 +218,7 @@
     }
 
     .life-modal-card {
-      background: #ffffff;
+      background: var(--panel-bg);
       color: var(--ink);
       border-radius: 18px;
       max-width: 520px;
@@ -248,8 +248,8 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      border: 1px solid rgba(17, 60, 85, 0.2);
-      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--outline);
+      background: rgba(255, 255, 255, 0.1);
       font-size: 1.2rem;
       line-height: 1;
       cursor: pointer;
@@ -317,6 +317,15 @@
       display: block;
       max-height: clamp(220px, 45vh, 520px);
       object-fit: contain;
+    }
+
+    .hero-wordmark {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      color: #c83a2d;
+      text-align: center;
+      margin-top: 18px;
+      letter-spacing: 0.5px;
     }
 
     .post-hero {
