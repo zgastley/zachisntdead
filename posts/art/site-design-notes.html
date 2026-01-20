@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Designing This Site · Zach Isn't Dead</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="../../theme.js" defer></script>
+  <script src="../../status.js" defer></script>
+  <script src="../../gallery.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <div class="nav">
+      <nav class="nav-links">
+        <a href="../../index.html#music">Music</a>
+        <a href="../../index.html#art">Art</a>
+        <a href="../../index.html#projects">Projects</a>
+        <a href="../../index.html#blog">Blog</a>
+        <a href="../../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+              <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="12" y1="2" x2="12" y2="5"></line>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line>
+                <line x1="19" y1="12" x2="22" y2="12"></line>
+                <line x1="4.5" y1="4.5" x2="6.5" y2="6.5"></line>
+                <line x1="17.5" y1="17.5" x2="19.5" y2="19.5"></line>
+                <line x1="17.5" y1="6.5" x2="19.5" y2="4.5"></line>
+                <line x1="4.5" y1="19.5" x2="6.5" y2="17.5"></line>
+              </g>
+            </svg>
+          </span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path>
+            </svg>
+          </span>
+        </button>
+      </nav>
+    </div>
+    <div class="life-bar" role="status" aria-live="polite">
+      <div class="life-bar-inner">
+        <button class="life-bar-chip" type="button" aria-haspopup="dialog" aria-controls="life-modal">
+          <span class="life-heart" aria-hidden="true"></span>
+          <span class="life-pill">...probing...</span>
+        </button>
+      </div>
+    </div>
+    <div id="life-modal" class="life-modal" role="dialog" aria-modal="true" aria-labelledby="life-modal-title" hidden>
+      <div class="life-modal-card">
+        <button class="life-modal-close" type="button" aria-label="Close status details">×</button>
+        <h2 id="life-modal-title">Is he alive?</h2>
+        <p>
+          This reads my current heart rate from my tracker. If it's got a reading, I'm probably alive. If it doesn't
+          have a reading... I'm also probably alive but something broke. ¯\_(ツ)_/¯
+        </p>
+      </div>
+    </div>
+
+    <main>
+      <section class="article-header">
+        <h1 class="title">Designing This Site</h1>
+        <div class="meta">2026-01-19 · Art</div>
+      </section>
+
+      <section class="article-media">
+        <div class="gallery" data-gallery>
+          <div class="gallery-main">
+            <img src="../../assets/art-site-01.png" alt="Hero, nav, and status bar on the home page." />
+          </div>
+          <div class="gallery-caption">Select a view to see layout details.</div>
+          <div class="gallery-thumbs">
+            <button class="gallery-thumb" type="button" data-full="../../assets/art-site-01.png" data-alt="Hero, nav, and status bar on the home page." data-caption="Hero, nav, and status bar on the home page.">
+              <img src="../../assets/art-site-01-thumb.png" alt="Home page hero thumbnail." />
+            </button>
+            <button class="gallery-thumb" type="button" data-full="../../assets/art-site-02.png" data-alt="Music section layout with embedded players." data-caption="Music section layout with embedded players.">
+              <img src="../../assets/art-site-02-thumb.png" alt="Music section thumbnail." />
+            </button>
+            <button class="gallery-thumb" type="button" data-full="../../assets/art-site-03.png" data-alt="Art section list layout and card spacing." data-caption="Art section list layout and card spacing.">
+              <img src="../../assets/art-site-03-thumb.png" alt="Art section thumbnail." />
+            </button>
+            <button class="gallery-thumb" type="button" data-full="../../assets/art-site-04.png" data-alt="Dark mode palette and typography." data-caption="Dark mode palette and typography.">
+              <img src="../../assets/art-site-04-thumb.png" alt="Dark mode thumbnail." />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="article">
+        <h2>Intent</h2>
+        <p>This site is intentionally spare. The work should feel present without the interface trying to compete with it. I wanted navigation to fade into the background, type to feel personal, and the layout to breathe. The tone is a studio log, not a portfolio splash.</p>
+        <p>Instead of a single headline hero, the site starts with a quiet motif and a simple statement. That “Not yet.” anchor sets a tone: the work is ongoing. It signals process over polish and gives the page a soft, honest pulse.</p>
+
+        <h2>Palette</h2>
+        <p>The palette is warm and grounded — parchment, deep ink, and a few accents pulled from the head artwork. Color stays restrained so embeds, images, and writing can carry the weight. It also makes dark mode feel like a true alternate room instead of a filter slapped on top.</p>
+
+        <div class="inline-gallery">
+          <img class="inline-image" src="../../assets/art-site-inline-01.png" alt="Palette swatches and type scale." />
+          <img class="inline-image" src="../../assets/art-site-inline-02.png" alt="Spacing and layout grid references." />
+        </div>
+
+        <h2>Layout + Rhythm</h2>
+        <p>Spacing does most of the heavy lifting. Sections follow a steady rhythm: title, short summary, then content. The occasional soft card adds contrast without breaking alignment. I like the feeling of a long page you can exhale into.</p>
+        <p>The live status bar is both playful and practical. It’s a tiny proof‑of‑life and a subtle narrative device: this page updates because the person behind it is still here, still making.</p>
+
+        <h2>Dark Mode</h2>
+        <p>Dark mode is tuned, not toggled. The panels get deeper, the text warms up, and the accent shifts so the work stays legible without feeling harsh.</p>
+
+        <div class="inline-gallery">
+          <img class="inline-image" src="../../assets/art-site-inline-03.png" alt="Dark mode section layout." />
+          <img class="inline-image" src="../../assets/art-site-inline-04.png" alt="Status bar and modal in dark mode." />
+        </div>
+
+        <h2>Technical Notes</h2>
+        <p>Technically, the site is a single static page hosted on GitHub Pages. The content is split into section files and stitched together with a tiny Python build script. That lets me keep one page in production while editing each section in isolation.</p>
+        <p>The live heart rate comes from a public Google Sheet updated by a Fitbit automation, fetched in the browser every 30 seconds. The gallery component is plain JavaScript — no frameworks, just a simple image swap and a small thumb grid.</p>
+        <p>Embedded media is treated like content, not a separate widget. Bandcamp and YouTube live inside the same rhythm so the page still reads as a single story.</p>
+        <p>In short: a site designed to hold work, not perform for it. Minimal, but not sterile. Structured, but still curious.</p>
+        <a class="back-link" href="../../index.html#art">← Back to Art</a>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2026 ZachIsntDead.com. Built with curiosity.
+    </footer>
+  </div>
+</body>
+</html>

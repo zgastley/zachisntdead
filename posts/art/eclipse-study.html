@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zach Isn't Dead</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="theme.js" defer></script>
-  <script src="status.js" defer></script>
+  <title>Eclipse Study · Zach Isn't Dead</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <script src="../../theme.js" defer></script>
+  <script src="../../status.js" defer></script>
 </head>
-
-<body id="top" class="home">
+<body>
   <div class="page">
     <div class="nav">
-      <!-- <div class="logo"><img class="logo-icon" src="assets/head_cycle.gif" alt="Zach Isn't Dead icon" /></div> -->
       <nav class="nav-links">
-        <a href="#music">Music</a>
-        <a href="#art">Art</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="../../index.html#music">Music</a>
+        <a href="../../index.html#art">Art</a>
+        <a href="../../index.html#projects">Projects</a>
+        <a href="../../index.html#blog">Blog</a>
+        <a href="../../index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
           <span class="theme-icon theme-icon-sun" aria-hidden="true">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -62,23 +60,33 @@
       </div>
     </div>
 
-    <header>
-
-      <section class="hero">
-        <img class="hero-image" src="assets/zach-heads.png" alt="Layered head silhouettes in white on black." />
-        <div class="hero-wordmark">Not yet.</div>
-      </section>
-    </header>
 
     <main>
-      {{section:home}}
-      {{section:music}}
+      <section class="article-header">
+        <h1 class="title">Eclipse Study</h1>
+        <div class="meta">2026-01-19 · Art</div>
+      </section>
 
-      {{section:art}}
+      <section class="article-media">
+        <figure class="art-figure">
+          <img class="art-image" src="../../assets/your-image.jpg" alt="Describe the artwork." />
+          <figcaption class="art-caption">Optional caption for the piece.</figcaption>
+        </figure>
+      </section>
 
-      {{section:projects}}
+      <section class="article">
+<h1>Eclipse Study</h1>
 
-      {{section:contact}}
+<img class="inline-image" src="../../assets/example-art-single.png" alt="Eclipse study" />
+
+<p>A quiet study in contrast and repetition. Built from layered ink washes and soft charcoal gradients.</p>
+
+<h2>Notes</h2>
+
+<p>This one was about restraint — letting the paper show through and not overworking the edges.</p>
+
+        <a class="back-link" href="../../index.html#art">← Back to Art</a>
+      </section>
     </main>
 
     <footer>
@@ -86,5 +94,4 @@
     </footer>
   </div>
 </body>
-
 </html>

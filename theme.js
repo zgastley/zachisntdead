@@ -10,8 +10,11 @@
       root.classList.remove("dark");
     }
     if (toggle) {
+      const toLight = mode === "dark";
+      const label = toLight ? "Switch to light mode" : "Switch to dark mode";
       toggle.setAttribute("aria-pressed", mode === "dark" ? "true" : "false");
-      toggle.textContent = mode === "dark" ? "Light" : "Dark";
+      toggle.setAttribute("aria-label", label);
+      toggle.setAttribute("title", label);
     }
     document.querySelectorAll("[data-src-light][data-src-dark]").forEach((embed) => {
       const next = mode === "dark" ? embed.dataset.srcDark : embed.dataset.srcLight;

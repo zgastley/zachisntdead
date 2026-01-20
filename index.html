@@ -18,9 +18,29 @@
         <a href="#music">Music</a>
         <a href="#art">Art</a>
         <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
         <a href="#contact">Contact</a>
-        <button class="theme-toggle" type="button" aria-pressed="false">Dark</button>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+              <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="12" y1="2" x2="12" y2="5"></line>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line>
+                <line x1="19" y1="12" x2="22" y2="12"></line>
+                <line x1="4.5" y1="4.5" x2="6.5" y2="6.5"></line>
+                <line x1="17.5" y1="17.5" x2="19.5" y2="19.5"></line>
+                <line x1="17.5" y1="6.5" x2="19.5" y2="4.5"></line>
+                <line x1="4.5" y1="19.5" x2="6.5" y2="17.5"></line>
+              </g>
+            </svg>
+          </span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path>
+            </svg>
+          </span>
+        </button>
       </nav>
     </div>
     <div class="life-bar" role="status" aria-live="polite">
@@ -55,116 +75,122 @@
         <p class="home-copy">Hello. This is my archive. As long as I'm living, I'll keep it updated.</p>
       </section>
       <section id="music" class="section no-rule">
-        <h1 class="page-title">Music</h1>
-        <p class="page-intro">Songs, demos, and other things.</p>
-        <div class="post-list">
-          <article class="post-item">
-            <div class="post-meta">Latest Release</div>
-            <h3>bird</h3>
-            <p>My first official release in two years. Focus on songwritting and lyrical stuff. Trying to expand. Also I
-              got Chickens and love birds.</p>
-            <div class="bandcamp-frame">
-              <iframe class="bandcamp-embed"
-                src="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=false/artwork=small/transparent=true/"
-                data-src-light="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
-                data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
-                seamless><a href="https://zachgastley.bandcamp.com/album/bird">bird by Zach Gastley</a></iframe>
-            </div>
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Other Releases</div>
-            <h3>swamp</h3>
-            <p>Glitched out diary entries turned into an EP. </p>
-            <div class="bandcamp-frame">
-              <iframe class="bandcamp-embed"
-                src="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=false/artwork=small/transparent=true/"
-                data-src-light="https://bandcamp.com/EmbeddedPlayer/album=3121973163//size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
-                data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=3121973163//size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
-                seamless><a href="https://zachgastley.bandcamp.com/album/swamp">swamp by Zach Gastley</a></iframe>
-            </div>
+  <h1 class="page-title">Music</h1>
+  <p class="page-intro">Songs, demos, and other things.</p>
+  <div class="post-list">
+    <!-- md-posts:start -->
+    <!-- md-posts:end -->
+    <!-- Latest Release -->
+    <article class="post-item">
+      <div class="post-meta">Latest Release</div>
+      <h3>bird</h3>
+      <p>My first official release in two years. For this collection of songs I put a lot of focus on songwritting and
+        lyric crafting. I'm usually trapped in my process of impromptu and the occasional written material but I'm
+        trying to expand. This direction is one I'm really happy with and can see more of my records / blips and bloops
+        following suit.
+        <br>
+        <br>
+        The idea behind the name <b>bird</b> was that all these songs would get stuck in my head while I was making
+        them. My wife and I had just started taking care of a new flock of birds and I would find myself singing to
+        them. Eventually I started calling them my "birdsongs".
+        <br>
+        <br>
+        Also I got Chickens and really fell in love with birds.
+      </p>
+      <div class="bandcamp-frame">
+        <iframe class="bandcamp-embed"
+          src="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=false/artwork=small/transparent=true/"
+          data-src-light="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
+          data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
+          seamless><a href="https://zachgastley.bandcamp.com/album/bird">bird by Zach Gastley</a></iframe>
+      </div>
+    </article>
 
-          </article>
-          <article class="post-item">
-            <div class="post-meta">In progress</div>
-            <h3>Local Dog</h3>
-            <p>Are we a jam band? I don't know. Maybe. Either way I'll never will stop playing with these dudes. </p>
-            <p>
-              More on <a href="www.locallydog.com">on our site.
-            </p>
-            <div class="bandcamp-frame">
-              <iframe class="bandcamp-embed"
-                src="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=false/artwork=small/transparent=true/"
-                data-src-light="https://bandcamp.com/EmbeddedPlayer/album=2444227878//size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
-                data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=2444227878//size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
-                seamless><a href="https://zachgastley.bandcamp.com/album/swamp">swamp by Zach Gastley</a></iframe>
-            </div>
+    <!-- Other releases -->
+    <article class="post-item">
+      <div class="post-meta">Other Solo Releases</div>
+      <h3>swamp</h3>
+      <p>This is basically a few glitched out diary entries turned into an EP. This was mad over the course of 3-4 years
+        and honestly I just didn't know where else to put these particular songs. I'll be doing a few more releases soon
+        in this vein.</p>
+      <div class="bandcamp-frame">
+        <iframe class="bandcamp-embed"
+          src="https://bandcamp.com/EmbeddedPlayer/album=3150204741/size=large/bgcol=333333/linkcol=e99708/tracklist=false/artwork=small/transparent=true/"
+          data-src-light="https://bandcamp.com/EmbeddedPlayer/album=3121973163//size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
+          data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=3121973163//size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
+          seamless><a href="https://zachgastley.bandcamp.com/album/swamp">swamp by Zach Gastley</a></iframe>
+      </div>
+    </article>
 
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Studio notes</div>
-            <h3>Live set rebuild</h3>
-            <p>Reworking the show around loop pedals and live drums.</p>
-          </article>
+    <!-- Collaborations -->
+    <article class="post-item">
+      <div class="post-meta">Collaborations</div>
+      <h3>Local Dog</h3>
+      <p>Are we a jam band? I don't know. Maybe. Either way I'll never will stop playing with these dudes. </p>
+      <p>
+        More on <a class="content-link" href="https://www.locallydog.com" target="_blank" rel="noreferrer">our site</a>.
+      </p>
+      <div class="media-grid">
+        <div class="embed-wrap video">
+          <iframe class="youtube-embed" src="https://www.youtube.com/embed/vMt8AMv-N4g?si=Jgwr3G6i_MRbojGT"
+            title="Local Dog live session" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-      </section>
+        <div class="bandcamp-frame">
+          <iframe class="bandcamp-embed"
+            src="https://bandcamp.com/EmbeddedPlayer/album=2444227878/size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
+            data-src-light="https://bandcamp.com/EmbeddedPlayer/album=2444227878/size=large/bgcol=333333/linkcol=e99708/tracklist=true/artwork=small/transparent=true/"
+            data-src-dark="https://bandcamp.com/EmbeddedPlayer/album=2444227878/size=large/bgcol=111111/linkcol=95d9c3/tracklist=true/artwork=small/transparent=true/"
+            seamless><a href="https://localdog.bandcamp.com/album/live-southern-feed-store-8-10-2023">Live @ Southern
+              Feed Store (8/10/2023) by Local Dog</a></iframe>
+        </div>
+      </div>
+    </article>
+
+    <!-- <article class="post-item"> -->
+    <!--   <div class="post-meta">Studio notes</div> -->
+    <!--   <h3>Live set rebuild</h3> -->
+    <!--   <p>Reworking the show around loop pedals and live drums.</p> -->
+    <!-- </article> -->
+  </div>
+</section>
 
       <section id="art" class="section">
-        <h2>Art</h2>
-        <p>Sketches, scans, and texture studies. A living archive of visual experiments.</p>
-        <div class="post-list">
-          <article class="post-item">
-            <div class="post-meta">Series</div>
-            <h3>Collage memory</h3>
-            <p>Layered paper, torn edges, and soft noise.</p>
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Series</div>
-            <h3>Ink maps</h3>
-            <p>Minimal line work that turns into imagined landscapes.</p>
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Workbench</div>
-            <h3>Material tests</h3>
-            <p>Recycled stock, rough textures, and ink bleed.</p>
-          </article>
-        </div>
-      </section>
+  <h2>Art</h2>
+  <p>It's hard to keep my art organized. I've been creating for years and go through intense periods of output followed
+    by long (usually depressive?) stints of nothing. I try not to force anything anymore. Traditonally, I'd use
+    Instagram as my archive for art (which I will continue to do so) but I wanted to also make sure I was being smart
+    about where I kept things long term.
+    <br>
+    <br>
+    Below you'll find one off post about things I've worked on as well as loose "series" as I work through that. Some
+    I'll probably talk deeper about.
+  </p>
+  <div class="post-list">
+    <!-- md-posts:start -->
+    <article class="post-item" data-origin="md">
+      <div class="post-meta">Series</div>
+      <h3><a class="content-link" href="posts/art/field-notes-series.html">Field Notes Series</a></h3>
+      <p>Multi-panel study with graphite, ink, and found paper.</p>
+    </article>
+    <!-- md-posts:end -->
+  </div>
+</section>
 
       <section id="projects" class="section">
-        <h2>Projects</h2>
-        <p>Builds, experiments, and the ideas I am prototyping right now.</p>
-        <ul class="now">
-          <li>Designing a live set around tape loops and live vocals.</li>
-          <li>Documenting the process for an art + sound installation.</li>
-          <li>Collecting references for a short film soundtrack.</li>
-          <li>Sketching a mini zine to pair with the next EP release.</li>
-        </ul>
-      </section>
+  <h2>Projects</h2>
 
-      <section id="blog" class="section">
-        <h2>Journal</h2>
-        <p>Short notes on new releases, works-in-progress, and what is keeping me curious.</p>
-        <div class="post-list">
-          <article class="post-item">
-            <div class="post-meta">Mar 12, 2026 · Studio</div>
-            <h3>Static Gardens: first mix notes</h3>
-            <p>Gritty drums, airy synths, and a new vocal chain that finally feels right.</p>
-            <a class="post-link" href="posts/static-gardens.html">Read entry</a>
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Feb 27, 2026 · Process</div>
-            <h3>Building a tiny collage zine</h3>
-            <p>Cutting, scanning, and re-layering until it starts to feel like a memory.</p>
-            <a class="post-link" href="posts/collage-zine.html">Read entry</a>
-          </article>
-          <article class="post-item">
-            <div class="post-meta">Feb 02, 2026 · Field</div>
-            <h3>Field recordings from the city</h3>
-            <p>Morning trains, late-night chatter, and the hum that stitches it together.</p>
-            <a class="post-link" href="posts/city-field-recordings.html">Read entry</a>
-          </article>
-        </div>
-      </section>
+  <div class="post-list">
+    <!-- md-posts:start -->
+    <article class="post-item" data-origin="md">
+      <div class="post-meta">Case Study</div>
+      <h3><a class="content-link" href="posts/projects/site-design.html">Site Design</a></h3>
+      <p>This a in depth look at my thought processes while designing this site.</p>
+    </article>
+    <!-- md-posts:end -->
+  </div>
+</section>
 
       <section id="contact" class="section">
         <h2>Contact</h2>
