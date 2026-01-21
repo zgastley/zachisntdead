@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Static Gardens: first mix notes · Zach Isn't Dead</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../theme.js" defer></script>
+  <script src="../status.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <div class="nav">
+      <nav class="nav-links">
+        <a href="../index.html#music">Music</a>
+        <a href="../index.html#art">Art</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#blog">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4" fill="currentColor"></circle>
+              <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="12" y1="2" x2="12" y2="5"></line>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line>
+                <line x1="19" y1="12" x2="22" y2="12"></line>
+                <line x1="4.5" y1="4.5" x2="6.5" y2="6.5"></line>
+                <line x1="17.5" y1="17.5" x2="19.5" y2="19.5"></line>
+                <line x1="17.5" y1="6.5" x2="19.5" y2="4.5"></line>
+                <line x1="4.5" y1="19.5" x2="6.5" y2="17.5"></line>
+              </g>
+            </svg>
+          </span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor" d="M21 14.5A8.5 8.5 0 0 1 9.5 3 7 7 0 1 0 21 14.5z"></path>
+            </svg>
+          </span>
+        </button>
+      </nav>
+    </div>
+    <div class="life-bar" role="status" aria-live="polite">
+      <div class="life-bar-inner">
+        <button class="life-bar-chip" type="button" aria-haspopup="dialog" aria-controls="life-modal">
+          <span class="life-heart" aria-hidden="true"></span>
+          <span class="life-pill">...probing...</span>
+        </button>
+      </div>
+    </div>
+    <div id="life-modal" class="life-modal" role="dialog" aria-modal="true" aria-labelledby="life-modal-title" hidden>
+      <div class="life-modal-card">
+        <button class="life-modal-close" type="button" aria-label="Close status details">×</button>
+        <h2 id="life-modal-title">Is he alive?</h2>
+        <p>
+          This reads my current heart rate from my tracker. If it's got a reading, I'm probably alive. If it doesn't
+          have a reading... I'm also probably alive but something broke. ¯\_(ツ)_/¯
+        </p>
+      </div>
+    </div>
+
+    <header>
+
+      <section class="hero">
+        <img class="hero-image" src="../assets/optimized/zach-heads.png" alt="Layered head silhouettes in white on black." />
+      </section>
+    </header>
+
+    <main>
+      <section class="article-header">
+        <h1 class="title">Static Gardens: first mix notes</h1>
+        <div class="meta">Mar 12, 2026 · Studio</div>
+      </section>
+
+      <section class="article">
+        <p>Today’s mix pass finally landed in the pocket. The drums are dry and gritty, the pads are wide and glassy, and the vocal chain has just the right amount of grit without smearing the consonants.</p>
+        <p>I am leaning into the contrast: tight low-end, airy mids, and tiny bursts of noise tucked under the chorus. The hook feels less like a big moment and more like a slow bloom.</p>
+        <p>Next pass: carve the mids on the synth stack, add a touch of tape flutter to the bass bus, and print a version that is more raw for a live set test.</p>
+        <a class="back-link" href="../index.html">← Back to Journal</a>
+      </section>
+    </main>
+
+    <footer>
+      &copy; 2026 ZachIsntDead.com. Built with curiosity.
+    </footer>
+  </div>
+</body>
+</html>
