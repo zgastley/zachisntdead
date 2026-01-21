@@ -69,7 +69,11 @@ def normalize_image_path(path: str) -> str:
         return path
     if path.startswith("/") or path.startswith("../"):
         return path
-    return f"../../assets/{path}"
+    if path.startswith("assets/optimized/"):
+        return path
+    if path.startswith("assets/"):
+        return f"{path.replace('assets/', 'assets/optimized/', 1)}"
+    return f"../../assets/optimized/{path}"
 
 
 def thumb_for(path: str) -> str:

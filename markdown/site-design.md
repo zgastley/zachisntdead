@@ -3,7 +3,7 @@ date: 2026-01-19
 section: projects
 type: gallery
 label: Case Study
-post-to-site: true
+post-to-site: false
 
 # Designing this site
 

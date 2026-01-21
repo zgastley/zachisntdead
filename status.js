@@ -1,18 +1,39 @@
 (() => {
   const root = document.body;
-  const statusEl = document.querySelector(".life-pill");
+  const statusEls = Array.from(document.querySelectorAll(".life-pill"));
   const feedUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTf9LEUBGvKLUj21scsKLQtDQ-ucL0RccRz-eNfB76MNM2U_hz-RuJe3reKNU22XtR-8xX8HpC63ol3/pub?gid=663029337&single=true&output=csv";
   const modal = document.getElementById("life-modal");
-  const trigger = document.querySelector(".life-bar-chip");
+  const triggers = Array.from(document.querySelectorAll(".life-trigger"));
   const closeBtn = document.querySelector(".life-modal-close");
   const navLinks = Array.from(document.querySelectorAll(".nav-links a[href^=\"#\"]"));
   const sections = Array.from(document.querySelectorAll("main section[id]"));
+  const hero = document.querySelector(".hero");
 
   const update = () => {
-    if (window.scrollY > 10) {
-      root.classList.add("scrolled");
+    if (!hero) {
+      if (window.scrollY > 10) {
+        root.classList.add("content-revealed");
+        root.classList.add("pill-visible");
+      } else {
+        root.classList.remove("content-revealed");
+        root.classList.remove("pill-visible");
+      }
+      return;
+    }
+
+    const heroRect = hero.getBoundingClientRect();
+    const revealPoint = heroRect.height * 0.5;
+
+    if (heroRect.bottom <= revealPoint) {
+      root.classList.add("content-revealed");
     } else {
-      root.classList.remove("scrolled");
+      root.classList.remove("content-revealed");
+    }
+
+    if (heroRect.bottom <= 0) {
+      root.classList.add("pill-visible");
+    } else {
+      root.classList.remove("pill-visible");
     }
   };
 
@@ -44,8 +65,20 @@
     }
     return `Alive - Cruising | ${bpm} bpm`;
   };
+
+  const setHeartRateAnimation = (bpm) => {
+    const hearts = Array.from(document.querySelectorAll(".life-heart"));
+    if (!hearts.length || !bpm) {
+      return;
+    }
+    const seconds = Math.min(2, Math.max(0.4, 60 / bpm));
+    hearts.forEach((heart) => {
+      heart.style.animationDuration = `${seconds}s`;
+      heart.style.setProperty("--pulse-speed", `${seconds}s`);
+    });
+  };
   const refreshStatus = async () => {
-    if (!statusEl) {
+    if (!statusEls.length) {
       return;
     }
     try {
@@ -56,7 +89,10 @@
       const csvText = await response.text();
       const bpm = parseBpm(csvText);
       if (bpm) {
-        statusEl.textContent = statusForBpm(bpm);
+        statusEls.forEach((el) => {
+          el.textContent = statusForBpm(bpm);
+        });
+        setHeartRateAnimation(bpm);
       }
     } catch (error) {
       // Keep fallback text when the feed is unavailable.
@@ -123,8 +159,8 @@
     sections.forEach((section) => observer.observe(section));
   }
 
-  if (trigger) {
-    trigger.addEventListener("click", openModal);
+  if (triggers.length) {
+    triggers.forEach((trigger) => trigger.addEventListener("click", openModal));
   }
   if (closeBtn) {
     closeBtn.addEventListener("click", (event) => {
