@@ -15,10 +15,25 @@ Goal: pull selected Instagram posts into the site repo (locally hosted images wh
 
 ## Setup
 
-Set env vars (we'll store these in 1Password later):
+### Auth
 
-- `IG_GRAPH_ACCESS_TOKEN` (required)
-- `IG_GRAPH_IG_USER_ID` (required)
+Preferred: store auth in 1Password (OpenClaw vault).
+
+This repo expects a 1Password item:
+- Vault: `OpenClaw`
+- Item: `instagram-api-key-zachisntdead`
+  - field `credential` = IG Graph access token
+  - field `username` = IG user id
+
+Override via env vars (optional):
+
+- `IG_OP_VAULT` (default: `OpenClaw`)
+- `IG_OP_ITEM` (default: `instagram-api-key-zachisntdead`)
+
+Or bypass 1Password and use env vars directly:
+
+- `IG_GRAPH_ACCESS_TOKEN`
+- `IG_GRAPH_IG_USER_ID`
 
 ## Workflow
 

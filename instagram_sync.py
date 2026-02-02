@@ -53,11 +53,73 @@ def sh(*args: str, check: bool = True, capture: bool = False) -> subprocess.Comp
     )
 
 
+def _try_load_op_service_token_from_systemd_dropin() -> None:
+    """Convenience: if OP_SERVICE_ACCOUNT_TOKEN isn't in env, try to read it from
+    the local openclaw gateway systemd drop-in.
+
+    This keeps the workflow smooth on this box, but we still never print the token.
+    """
+
+    if os.environ.get("OP_SERVICE_ACCOUNT_TOKEN"):
+        return
+
+    dropin = Path.home() / ".config/systemd/user/openclaw-gateway.service.d/10-1password.conf"
+    if not dropin.exists():
+        return
+
+    m = re.search(r"OP_SERVICE_ACCOUNT_TOKEN=([^\"\n]+)", dropin.read_text())
+    if m:
+        os.environ["OP_SERVICE_ACCOUNT_TOKEN"] = m.group(1)
+
+
+def op_read(ref: str) -> str:
+    """Read a 1Password secret reference via op CLI (service account mode)."""
+
+    _try_load_op_service_token_from_systemd_dropin()
+    out = sh("op", "read", ref, capture=True).stdout
+    return out.rstrip("\n")
+
+
 def require_env(name: str) -> str:
     value = os.environ.get(name, "").strip()
     if not value:
         raise SystemExit(f"Missing required env var: {name}")
     return value
+
+
+def get_ig_access_token() -> str:
+    """Resolve IG Graph access token.
+
+    Priority:
+    1) IG_GRAPH_ACCESS_TOKEN env
+    2) IG_OP_ITEM (defaults to instagram-api-key-zachisntdead in OpenClaw vault)
+       using field `credential`.
+    """
+
+    direct = os.environ.get("IG_GRAPH_ACCESS_TOKEN", "").strip()
+    if direct:
+        return direct
+
+    item = os.environ.get("IG_OP_ITEM", "instagram-api-key-zachisntdead").strip()
+    vault = os.environ.get("IG_OP_VAULT", "OpenClaw").strip()
+    return op_read(f"op://{vault}/{item}/credential")
+
+
+def get_ig_user_id() -> str:
+    """Resolve IG user id.
+
+    Priority:
+    1) IG_GRAPH_IG_USER_ID env
+    2) IG_OP_ITEM using field `username` (we store the IG user id there).
+    """
+
+    direct = os.environ.get("IG_GRAPH_IG_USER_ID", "").strip()
+    if direct:
+        return direct
+
+    item = os.environ.get("IG_OP_ITEM", "instagram-api-key-zachisntdead").strip()
+    vault = os.environ.get("IG_OP_VAULT", "OpenClaw").strip()
+    return op_read(f"op://{vault}/{item}/username")
 
 
 def safe_slug(text: str) -> str:
@@ -139,8 +201,8 @@ def write_curation(posts: list[CuratedPost]) -> None:
 
 
 def cmd_sync(_: argparse.Namespace) -> None:
-    token = require_env("IG_GRAPH_ACCESS_TOKEN")
-    ig_user_id = require_env("IG_GRAPH_IG_USER_ID")
+    token = get_ig_access_token()
+    ig_user_id = get_ig_user_id()
 
     fields = "id,caption,media_type,media_url,permalink,timestamp,thumbnail_url,children{media_type,media_url,thumbnail_url}"
     data: dict[str, Any] = graph_get(
