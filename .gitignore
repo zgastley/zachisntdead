@@ -3,5 +3,5 @@
 claw
 claw.pub
 
-# Instagram watcher local state
-instagram/last_seen.json
+__pycache__/
+instagram/cache.json

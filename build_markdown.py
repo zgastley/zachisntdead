@@ -252,6 +252,12 @@ def markdown_to_html(lines: list[str]) -> str:
             html.append(f"<h1>{format_inline(stripped[2:].strip())}</h1>")
             continue
 
+        # Allow raw HTML blocks (for embeds) to pass through.
+        if stripped.startswith("<") and stripped.endswith(">"):
+            flush_paragraph()
+            html.append(line)
+            continue
+
         paragraph.append(line)
 
     flush_images()
