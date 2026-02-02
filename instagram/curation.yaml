@@ -1,0 +1,13 @@
+version: 1
+# Curation is tracked in git.
+#
+# posts:
+#   - id: "<instagram_media_id>"
+#     publish: true
+#     section: art        # art | music | projects | field-notes
+#     title: "Optional override title"
+#     summary: "1 sentence"
+#     media:
+#       mode: download    # download | embed | link
+#
+posts: []

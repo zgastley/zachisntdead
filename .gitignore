@@ -2,3 +2,6 @@
 # Ignore OpenClaw workspace / local keys
 claw
 claw.pub
+
+__pycache__/
+instagram/cache.json
