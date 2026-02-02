@@ -11,6 +11,7 @@ OUTPUT_DIR = ROOT / "posts"
 
 SINGLE_TEMPLATE = (ROOT / "posts" / "art" / "_single-template.html").read_text()
 GALLERY_TEMPLATE = (ROOT / "posts" / "art" / "_gallery-template.html").read_text()
+GENERIC_TEMPLATE = (ROOT / "posts" / "_md-template.html").read_text()
 
 IMAGE_RE = re.compile(r"^!\[(.*?)\]\((.*?)\)\s*$")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
@@ -221,9 +222,11 @@ def build_gallery_html(fm: FrontMatter, images: list[tuple[str, str]]) -> str:
         raise SystemExit(f"Gallery type requires images in {fm.source}")
 
     html = GALLERY_TEMPLATE
+    section_label = fm.section.replace("-", " ").title()
+
     html = html.replace("Art Series Title · Zach Isn't Dead", f"{fm.title} · Zach Isn't Dead")
     html = html.replace("Art Series Title", fm.title)
-    html = html.replace("YYYY-MM-DD · Art", f"{fm.date} · {fm.section.title()}")
+    html = html.replace("YYYY-MM-DD · Art", f"{fm.date} · {section_label}")
 
     main_alt, main_path = images[0]
     main_src = normalize_image_path(main_path)
@@ -255,10 +258,20 @@ def build_gallery_html(fm: FrontMatter, images: list[tuple[str, str]]) -> str:
 
 
 def build_single_html(fm: FrontMatter, images: list[tuple[str, str]]) -> str:
+    section_label = fm.section.replace("-", " ").title()
+
+    # For non-art sections, use a simpler template with no required hero/media.
+    if fm.section != "art":
+        html = GENERIC_TEMPLATE
+        html = html.replace("Post Title · Zach Isn't Dead", f"{fm.title} · Zach Isn't Dead")
+        html = html.replace("Post Title", fm.title)
+        html = html.replace("YYYY-MM-DD · Category", f"{fm.date} · {section_label}")
+        return html
+
     html = SINGLE_TEMPLATE
     html = html.replace("Art Title · Zach Isn't Dead", f"{fm.title} · Zach Isn't Dead")
     html = html.replace("Art Title", fm.title)
-    html = html.replace("YYYY-MM-DD · Art", f"{fm.date} · {fm.section.title()}")
+    html = html.replace("YYYY-MM-DD · Art", f"{fm.date} · {section_label}")
 
     image_path = images[0][1] if images else "your-image.jpg"
     html = html.replace("../../assets/your-image.jpg", normalize_image_path(image_path))
@@ -274,9 +287,11 @@ def build_post(fm: FrontMatter, lines: list[str]) -> Path:
     else:
         html = build_single_html(fm, gallery_images)
 
+    section_label = fm.section.replace("-", " ").title()
+
     html = re.sub(
         r"<section class=\"article\">[\s\S]*?</section>",
-        f"<section class=\"article\">\n{content_html}\n        <a class=\"back-link\" href=\"../../index.html#{fm.section}\">← Back to {fm.section.title()}</a>\n      </section>",
+        f"<section class=\"article\">\n{content_html}\n        <a class=\"back-link\" href=\"../../index.html#{fm.section}\">← Back to {section_label}</a>\n      </section>",
         html,
         count=1,
     )
