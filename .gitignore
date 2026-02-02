@@ -1,0 +1,4 @@
+
+# Ignore OpenClaw workspace / local keys
+claw
+claw.pub
