@@ -120,8 +120,30 @@ def split_gallery_and_body(lines: list[str], use_gallery: bool) -> tuple[list[tu
     return gallery_images, body
 
 
-def format_inline_code(text: str) -> str:
-    return INLINE_CODE_RE.sub(r"<code>\1</code>", text)
+BOLD_RE = re.compile(r"\*\*([^*]+)\*\*")
+ITALIC_RE = re.compile(r"(?<!\*)\*([^*]+)\*(?!\*)")
+LINK_RE = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+
+
+def format_inline(text: str) -> str:
+    """Very small markdown-ish inline formatter.
+
+    Order matters: code first, then links/emphasis.
+    """
+
+    def repl_code(m: re.Match[str]) -> str:
+        return f"<code>{m.group(1)}</code>"
+
+    text = INLINE_CODE_RE.sub(repl_code, text)
+
+    def repl_link(m: re.Match[str]) -> str:
+        label, href = m.group(1), m.group(2)
+        return f'<a href="{href}">{label}</a>'
+
+    text = LINK_RE.sub(repl_link, text)
+    text = BOLD_RE.sub(r"<strong>\1</strong>", text)
+    text = ITALIC_RE.sub(r"<em>\1</em>", text)
+    return text
 
 
 def markdown_to_html(lines: list[str]) -> str:
@@ -129,21 +151,39 @@ def markdown_to_html(lines: list[str]) -> str:
     image_run: list[tuple[str, str]] = []
     in_code_block = False
     list_mode: str | None = None
+    paragraph: list[str] = []
+
+    def flush_paragraph() -> None:
+        nonlocal paragraph
+        if not paragraph:
+            return
+        # Join wrapped lines into a single paragraph; keep intentional <br> where author used two spaces.
+        parts: list[str] = []
+        for chunk in paragraph:
+            if chunk.endswith("  "):
+                parts.append(format_inline(chunk.rstrip()))
+                parts.append("<br />")
+            else:
+                parts.append(format_inline(chunk.strip()))
+        text = " ".join([p for p in parts if p]).replace(" <br /> ", "<br />")
+        html.append(f"<p>{text}</p>")
+        paragraph = []
 
     def flush_images() -> None:
         nonlocal image_run
         if not image_run:
             return
+        flush_paragraph()
         if len(image_run) >= 2:
-            html.append("<div class=\"inline-gallery\">")
+            html.append('<div class="inline-gallery">')
             for alt, path in image_run:
                 src = normalize_image_path(path)
-                html.append(f"  <img class=\"inline-image\" src=\"{src}\" alt=\"{alt}\" />")
+                html.append(f'  <img class="inline-image" src="{src}" alt="{alt}" />')
             html.append("</div>")
         else:
             alt, path = image_run[0]
             src = normalize_image_path(path)
-            html.append(f"<img class=\"inline-image\" src=\"{src}\" alt=\"{alt}\" />")
+            html.append(f'<img class="inline-image" src="{src}" alt="{alt}" />')
         image_run = []
 
     def close_list() -> None:
@@ -155,11 +195,12 @@ def markdown_to_html(lines: list[str]) -> str:
         list_mode = None
 
     for raw in lines:
-        line = raw.rstrip()
+        line = raw.rstrip("\n")
         stripped = line.strip()
 
         if stripped.startswith("```"):
             flush_images()
+            flush_paragraph()
             close_list()
             if not in_code_block:
                 html.append("<pre><code>")
@@ -175,6 +216,7 @@ def markdown_to_html(lines: list[str]) -> str:
 
         if not stripped:
             flush_images()
+            flush_paragraph()
             close_list()
             html.append("")
             continue
@@ -189,32 +231,34 @@ def markdown_to_html(lines: list[str]) -> str:
         ordered_match = ORDERED_LIST_RE.match(stripped)
         unordered_match = UNORDERED_LIST_RE.match(stripped)
         if ordered_match or unordered_match:
+            flush_paragraph()
             desired_mode = "ol" if ordered_match else "ul"
             if list_mode != desired_mode:
                 close_list()
                 html.append(f"<{desired_mode}>")
                 list_mode = desired_mode
             item_text = ordered_match.group(1) if ordered_match else unordered_match.group(1)
-            html.append(f"  <li>{format_inline_code(item_text.strip())}</li>")
+            html.append(f"  <li>{format_inline(item_text.strip())}</li>")
             continue
         else:
             close_list()
 
         if stripped.startswith("## "):
-            html.append(f"<h2>{format_inline_code(stripped[3:].strip())}</h2>")
+            flush_paragraph()
+            html.append(f"<h2>{format_inline(stripped[3:].strip())}</h2>")
             continue
         if stripped.startswith("# "):
-            html.append(f"<h1>{format_inline_code(stripped[2:].strip())}</h1>")
+            flush_paragraph()
+            html.append(f"<h1>{format_inline(stripped[2:].strip())}</h1>")
             continue
-        html.append(f"<p>{format_inline_code(stripped)}</p>")
+
+        paragraph.append(line)
 
     flush_images()
+    flush_paragraph()
     close_list()
 
-    output = []
-    for line in html:
-        output.append(line)
-    return "\n".join(output)
+    return "\n".join(html)
 
 
 def build_gallery_html(fm: FrontMatter, images: list[tuple[str, str]]) -> str:
