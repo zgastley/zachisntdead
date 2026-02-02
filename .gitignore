@@ -2,3 +2,6 @@
 # Ignore OpenClaw workspace / local keys
 claw
 claw.pub
+
+# Instagram watcher local state
+instagram/last_seen.json
