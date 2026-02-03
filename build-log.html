@@ -4,20 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About the Archive · Zach Isn't Dead</title>
-  <meta name="description" content="Why this archive exists, how it is built, and the long-term intent behind it.">
-  <meta property="og:title" content="About the Archive · Zach Isn't Dead">
-  <meta property="og:description"
-    content="Why this archive exists, how it is built, and the long-term intent behind it.">
+  <title>Build Log · Zach Isn't Dead</title>
+  <meta name="description" content="A living changelog of updates and tweaks to the archive.">
+  <meta property="og:title" content="Build Log · Zach Isn't Dead">
+  <meta property="og:description" content="A living changelog of updates and tweaks to the archive.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/ZID.png">
+  <meta property="og:image" content="https://zachisntdead.com/assets/ZID.png">
   <meta property="og:site_name" content="Zach Isn't Dead">
-  <meta property="og:url" content="https://zachisntdead.com/about.html">
+  <meta property="og:url" content="https://zachisntdead.com/build-log.html">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About the Archive · Zach Isn't Dead">
-  <meta name="twitter:description"
-    content="Why this archive exists, how it is built, and the long-term intent behind it.">
-  <meta name="twitter:image" content="assets/ZID.png">
+  <meta name="twitter:title" content="Build Log · Zach Isn't Dead">
+  <meta name="twitter:description" content="A living changelog of updates and tweaks to the archive.">
+  <meta name="twitter:image" content="https://zachisntdead.com/assets/ZID.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
@@ -37,8 +35,8 @@
         <a href="index.html#art">Art</a>
         <a href="index.html#projects">Projects</a>
         <a href="index.html#field-notes">Field Notes</a>
-        <a href="build-log.html">Build Log</a>
-        <a href="about.html" class="active">About</a>
+        <a href="build-log.html" class="active">Build Log</a>
+        <a href="about.html">About</a>
         <a href="index.html#contact">Contact</a>
         <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"
           title="Switch to dark mode">
@@ -93,28 +91,50 @@
 
     <main>
       <section class="section">
-        <h1 class="page-title">About the archive</h1>
-        <p class="page-intro">My personal digital records.</p>
-        <div class="article">
-          <h2>Why</h2>
-          <p>
-            I made this archive so the work has a home that isn't controlled by a feed. It is a place for songs,
-            drawings, notes, and half-built ideas to live. It is also a promise to myself to keep
-            making, even when the output is messy or slow.
-          </p>
-          <h2>How it's built</h2>
-          <p>
-            The site is intentionally simple: plain HTML, CSS, and a small bit of JavaScript for theme switching,
-            the heart-rate status, and small interactions. It is lightweight by design so I can keep it up without
-            getting overwhelmed.
-          </p>
-          <h2>Long-term intent</h2>
-          <p>
-            This is meant to be a long, living record. If I stop posting for a while, that gap is also part
-            of the record. In general, I just want a solid, free, landing place for my creatie work.
-          </p>
-          <p class="artifact-note" data-reveal="artifact">you are a quiet room.</p>
-          <a class="back-link" href="index.html">← Back to the archive</a>
+        <h1 class="page-title">Build Log</h1>
+        <p class="page-intro">This site is also a labor of love. Posting change logs here for the fun of it..</p>
+        <div class="post-list build-log-list">
+          <article class="post-item build-log-item" id="log-2026-02-03-build-log">
+            <div class="post-meta"><time datetime="2026-02-03">2026-02-03</time> · Site</div>
+            <h3>Build log launched</h3>
+            <p>Created a dedicated build log page and wired it into the main nav.</p>
+            <details class="build-log-details">
+              <summary>View snippet</summary>
+              <pre><code class="language-html">&lt;nav class=&quot;nav-links&quot;&gt;
+                  ...
+                  &lt;a href=&quot;build-log.html&quot;&gt;Build Log&lt;/a&gt;
+                  &lt;a href=&quot;about.html&quot;&gt;About&lt;/a&gt;
+                  ...
+                  &lt;/nav&gt;</code></pre>
+            </details>
+          </article>
+          <article class="post-item build-log-item" id="log-2026-02-03-about">
+            <div class="post-meta"><time datetime="2026-02-03">2026-02-03</time> · Content</div>
+            <h3>About the archive page</h3>
+            <p>Added a page explaining the why, how it is built, and long-term intent.</p>
+            <details class="build-log-details">
+              <summary>View snippet</summary>
+              <pre><code class="language-html">&lt;main&gt;
+                  &lt;section class=&quot;section&quot;&gt;
+                  &lt;h1 class=&quot;page-title&quot;&gt;About the archive&lt;/h1&gt;
+                  &lt;p class=&quot;page-intro&quot;&gt;A place to keep the work alive.&lt;/p&gt;
+                  &lt;/section&gt;
+                  &lt;/main&gt;</code></pre>
+            </details>
+          </article>
+          <article class="post-item build-log-item" id="log-2026-02-03-performance">
+            <div class="post-meta"><time datetime="2026-02-03">2026-02-03</time> · Performance</div>
+            <h3>Embed and meta cleanup</h3>
+            <p>Added lazy loading to embeds and improved social sharing metadata.</p>
+            <details class="build-log-details">
+              <summary>View snippet</summary>
+              <pre><code class="language-html">&lt;meta property=&quot;og:title&quot; content=&quot;Zach Isn't
+                  Dead&quot;&gt;
+                  &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+                  &lt;iframe loading=&quot;lazy&quot; title=&quot;Instagram feed&quot; ...&gt;&lt;/iframe&gt;</code>
+              </pre>
+            </details>
+          </article>
         </div>
       </section>
     </main>

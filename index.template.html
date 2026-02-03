@@ -5,6 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zach Isn't Dead</title>
+  <meta name="description" content="Music, art, and ongoing projects from Zach Gastley. An archive that stays current while I'm alive.">
+  <meta property="og:title" content="Zach Isn't Dead">
+  <meta property="og:description" content="Music, art, and ongoing projects from Zach Gastley. An archive that stays current while I'm alive.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/ZID.png">
+  <meta property="og:site_name" content="Zach Isn't Dead">
+  <meta property="og:url" content="https://zachisntdead.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zach Isn't Dead">
+  <meta name="twitter:description" content="Music, art, and ongoing projects from Zach Gastley. An archive that stays current while I'm alive.">
+  <meta name="twitter:image" content="assets/ZID.png">
+  <link rel="canonical" href="https://zachisntdead.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.lightwidget.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https: data:; connect-src 'self' https://docs.google.com https://doc-10-6k-sheets.googleusercontent.com; frame-src https://bandcamp.com https://www.youtube.com https://cdn.lightwidget.com; font-src 'self' https://fonts.gstatic.com;">
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -22,6 +36,8 @@
         <a href="#art">Art</a>
         <a href="#projects">Projects</a>
         <a href="#field-notes">Field Notes</a>
+        <a href="build-log.html">Build Log</a>
+        <a href="about.html">About</a>
         <a href="#contact">Contact</a>
         <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
           <span class="theme-icon theme-icon-sun" aria-hidden="true">
@@ -70,7 +86,7 @@
 
       <section class="hero">
         <img class="hero-image" src="assets/optimized/zach-heads.png" alt="Layered head silhouettes in white on black." />
-        <div class="hero-wordmark">Not yet.</div>
+        <div class="hero-wordmark" data-alt="Still here." role="button" tabindex="0">Not yet.</div>
         <div class="hero-status">
           <button class="life-bar-chip hero-pill life-trigger" type="button" aria-haspopup="dialog" aria-controls="life-modal">
             <span class="life-heart" aria-hidden="true"></span>
@@ -95,7 +111,9 @@
     </main>
 
     <footer>
-      &copy; 2026 ZachIsntDead.com. Built with curiosity.
+      <a class="footer-top" href="#top">Back to top</a>
+      <div class="artifact-note" data-reveal="artifact">If you made it this far, the archive sees you.</div>
+      <div>&copy; 2026 ZachIsntDead.com. Built with curiosity.</div>
     </footer>
   </div>
 </body>

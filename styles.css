@@ -724,6 +724,45 @@
       gap: 8px;
     }
 
+    .build-log-details {
+      margin-top: 6px;
+    }
+
+    .build-log-details summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--accent-dark);
+      list-style: none;
+    }
+
+    .build-log-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .build-log-details summary::before {
+      content: "+";
+      display: inline-block;
+      margin-right: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .build-log-details[open] summary::before {
+      content: "–";
+    }
+
+    .build-log-details pre {
+      margin: 12px 0 0;
+      padding: 14px 16px;
+      background: var(--panel-bg);
+      border: 1px solid var(--outline);
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
     .post-meta {
       font-size: 0.85rem;
       color: var(--muted);

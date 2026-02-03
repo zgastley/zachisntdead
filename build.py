@@ -6,6 +6,8 @@ root = Path(__file__).resolve().parent
 sections_dir = root / "sections"
 template_path = root / "index.template.html"
 output_path = root / "index.html"
+build_log_source = sections_dir / "build-log.html"
+build_log_output = root / "build-log.html"
 
 html = template_path.read_text()
 
@@ -20,4 +22,6 @@ def replace(match):
 
 html = pattern.sub(replace, html)
 output_path.write_text(html)
+if build_log_source.exists():
+    build_log_output.write_text(build_log_source.read_text())
 print(f"Wrote {output_path}")
