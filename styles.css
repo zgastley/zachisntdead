@@ -127,6 +127,28 @@
       color: var(--nav-text);
     }
 
+    .nav-links a:focus-visible,
+    .theme-toggle:focus-visible {
+      outline: 2px solid rgba(17, 60, 85, 0.55);
+      outline-offset: 3px;
+    }
+
+    .content-link:focus-visible,
+    .contact a:focus-visible,
+    .footer-top:focus-visible {
+      outline: 2px solid rgba(17, 60, 85, 0.55);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    body.dark .nav-links a:focus-visible,
+    body.dark .theme-toggle:focus-visible,
+    body.dark .content-link:focus-visible,
+    body.dark .contact a:focus-visible,
+    body.dark .footer-top:focus-visible {
+      outline-color: rgba(199, 185, 167, 0.7);
+    }
+
 
     .nav-links a:hover,
     .nav-links a.active {
@@ -383,24 +405,36 @@
       font-size: clamp(2.4rem, 6vw, 4.6rem);
       color: #c83a2d;
       text-align: center;
-      margin-top: 18px;
+      margin-top: 14px;
       letter-spacing: 0.5px;
     }
 
+    .hero-wordmark[data-alt] {
+      cursor: pointer;
+    }
+
+    .hero-wordmark:focus-visible {
+      outline: 2px solid rgba(17, 60, 85, 0.55);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
     .hero-scroll {
-      font-family: "Courier New", monospace;
-      font-size: 0.85rem;
+      font-family: "Sora", "Helvetica Neue", sans-serif;
+      font-size: 0.72rem;
       text-align: center;
       color: var(--muted);
-      margin-top: 10px;
+      margin-top: 8px;
       line-height: 1.4;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.7;
     }
 
     .hero-status {
       display: flex;
       justify-content: center;
-      margin-top: 16px;
+      margin-top: 12px;
     }
 
     .bandcamp-frame {
@@ -560,6 +594,27 @@
       letter-spacing: 0.2px;
     }
 
+    .bandcamp-frame,
+    .embed-wrap,
+    .art-image,
+    .gallery-main,
+    .gallery-thumb,
+    .inline-image,
+    .post-hero {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .bandcamp-frame:hover,
+    .embed-wrap:hover,
+    .art-image:hover,
+    .gallery-main:hover,
+    .gallery-thumb:hover,
+    .inline-image:hover,
+    .post-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(17, 60, 85, 0.16);
+    }
+
     .post-hero img {
       width: 100%;
       height: 100%;
@@ -705,10 +760,58 @@
       text-decoration: underline;
     }
 
+    .article {
+      display: grid;
+      gap: 18px;
+    }
+
+    .article h2 {
+      margin: 18px 0 4px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+      width: fit-content;
+    }
+
+    .artifact-note {
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      color: var(--muted);
+    }
+
+    .artifact-note.revealed {
+      opacity: 0.7;
+      transform: translateY(0);
+    }
+
     footer {
       text-align: center;
       padding: 32px 24px 48px;
       color: var(--muted);
+    }
+
+    .footer-top {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
     }
 
     @keyframes fadeUp {
@@ -757,10 +860,23 @@
         padding-bottom: 28px;
       }
 
+      .hero-wordmark {
+        margin-top: 10px;
+      }
+
       .hero-pill {
         font-size: 0.75rem;
         padding: 14px 18px;
         gap: 10px;
+      }
+
+      .hero-status {
+        margin-top: 10px;
+      }
+
+      .hero-scroll {
+        margin-top: 6px;
+        letter-spacing: 0.25em;
       }
 
       .hero-pill .life-heart {

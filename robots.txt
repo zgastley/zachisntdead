@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zachisntdead.com/sitemap.xml

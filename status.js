@@ -8,6 +8,9 @@
   const navLinks = Array.from(document.querySelectorAll(".nav-links a[href^=\"#\"]"));
   const sections = Array.from(document.querySelectorAll("main section[id]"));
   const hero = document.querySelector(".hero");
+  const nav = document.querySelector(".nav");
+  const artifactNotes = Array.from(document.querySelectorAll(".artifact-note[data-reveal=\"artifact\"]"));
+  const heroWordmark = document.querySelector(".hero-wordmark[data-alt]");
 
   const update = () => {
     if (!hero) {
@@ -126,6 +129,28 @@
     });
   };
 
+  const updateActiveOnScroll = () => {
+    if (!sections.length || !navLinks.length) {
+      return;
+    }
+    const navHeight = nav ? nav.getBoundingClientRect().height : 0;
+    const marker = navHeight + 40;
+    const active = sections.find((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.top <= marker && rect.bottom > marker;
+    });
+
+    if (active) {
+      setActiveLink(active.id);
+      return;
+    }
+
+    const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 2;
+    if (nearBottom) {
+      setActiveLink(sections[sections.length - 1].id);
+    }
+  };
+
   update();
   refreshStatus();
   window.addEventListener("scroll", update, { passive: true });
@@ -141,22 +166,39 @@
       });
     });
 
-    const observer = new IntersectionObserver(
+    updateActiveOnScroll();
+    window.addEventListener("scroll", updateActiveOnScroll, { passive: true });
+  }
+
+  if (artifactNotes.length) {
+    const noteObserver = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          setActiveLink(visible[0].target.id);
-        }
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("revealed", entry.isIntersecting);
+        });
       },
       {
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: [0.2, 0.4, 0.6],
+        rootMargin: "-10% 0px -20% 0px",
+        threshold: 0.1,
       }
     );
 
-    sections.forEach((section) => observer.observe(section));
+    artifactNotes.forEach((note) => noteObserver.observe(note));
+  }
+
+  if (heroWordmark) {
+    const primary = heroWordmark.textContent;
+    const alt = heroWordmark.getAttribute("data-alt");
+    const toggle = () => {
+      heroWordmark.textContent = heroWordmark.textContent === primary ? alt : primary;
+    };
+    heroWordmark.addEventListener("click", toggle);
+    heroWordmark.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggle();
+      }
+    });
   }
 
   if (triggers.length) {
